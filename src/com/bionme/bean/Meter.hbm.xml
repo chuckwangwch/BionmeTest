@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+      "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-lazy="false">
+    <class name="com.bionme.meter" table="meter">
+    
+    	<id name="id" column="meter_id" type="int" unsaved-value="0">
+            <generator class="assigned">
+            </generator>
+    	</id>
+
+        <property column="sn" length="100" name="sn" not-null="false" type="string"/>
+        <property column="tag" length="100" name="tag" not-null="false" type="string"/>
+        <property column="is_lock" name="is_lock" not-null="false" type="binary"/>
+        <property column="is_online" name="is_online" not-null="false" type="binary"/>
+        <property column="create_date" name="create_date" not-null="false" type="date"/>
+        <property column="modify_date" name="modify_date" not-null="false" type="date"/>
+        <property column="delete_tag" name="delete_tag" not-null="false" type="binary"/>
+    </class>
+
+</hibernate-mapping>
+<!-- parsed in 0ms -->

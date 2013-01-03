@@ -1,13 +1,64 @@
-<%@ page language="java" contentType="text/html; charset=BIG5"
-    pageEncoding="BIG5"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=BIG5">
 <title>Bionme Test Trial</title>
+	<style type="text/css">
+		body {
+			font-family: sans-serif;
+		}
+		.data, .data td {
+			border-collapse: collapse;
+			width: 100%;
+			border: 1px solid #aaa;
+			margin: 2px;
+			padding: 2px;
+		}
+		.data th {
+			font-weight: bold;
+			background-color: #5C82FF;
+			color: white;
+		}
+	</style>
 </head>
 <body>
-<h1>Bionme Test Trial</h1>
+ 
+ 
+<form:form action="add.htm" commandName="data">
+ 
+    <table>
+    <tr>
+        <td>SN</td>
+        <td><form:input path="sn" /></td> 
+	</tr>
+</table>  
+</form:form>
+     
+<h3>Data</h3>
+<if  test="${!empty dataList}">
+<table class="data">
+<tr>
+    <th>Sn</th>
+    <th>Tag</th>
+    <th>is_lock</th>
+    <th>is_online</th>
+    <th>&nbsp;</th>
+</tr>
+<forEach items="${dataList}" var="data">
+    <tr>
+        <td>${data.sn}</td>
+        <td>${data.tag}</td>
+        <td>${data.is_lock}</td>
+        <td>${data_is_online}</td>
+        <td><a href="delete/${data.id}">delete</a></td>
+    </tr>
+<forEach>
+</table>
+<if>
+
 
 </body>
 </html>

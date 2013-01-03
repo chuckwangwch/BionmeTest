@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+      "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-lazy="false">
+    <class name="com.wolverinedec.tahiti.core.DemandPlanTemplate" table="template_demand_plans">
+    	<id name="id" column="tmpl_dmdplan_id" type="long" unsaved-value="0">
+            <generator class="sequence">
+                <param name="sequence">tmpl_dmdplan_seq</param>
+            </generator>
+    	</id>
+
+        <property column="TEMPLATE_NAME" length="100" name="name" not-null="true" type="string"/>
+        
+        <property column="LOC_HIER_TYPE_CODE" length="40" name="locHierTypeCode" not-null="true" type="string"/>
+        <property column="LOCATION_ID" name="locationId" not-null="true" type="int"/>
+        <property column="LOCATION_LEVEL" name="locationLevel" not-null="true" type="int"/>
+        <property column="LOCATION_LEVEL_TYPE" name="locationLevelType" not-null="true" type="string"/>
+
+        <property column="PROD_HIER_TYPE_CODE" length="40" name="prodHierTypeCode" not-null="true" type="string"/>
+        <property column="PRODUCT_ID" name="productId" not-null="true" type="int"/>
+        <property column="PRODUCT_LEVEL" name="productLevel" not-null="true" type="int"/>
+        <property column="PRODUCT_LEVEL_TYPE" name="productLevelType" not-null="true" type="string"/>
+
+        <property column="is_copy_system_forecast" length="1" name="copySystemForecast" not-null="true" type="boolean"/>
+
+        <property column="TEMPLATE_PLAN" name="templatePlan" not-null="true" type="string"/>
+    </class>
+
+</hibernate-mapping>
+<!-- parsed in 0ms -->

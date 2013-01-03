@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.bionme.domain.Meter" table="meter">
+    
+    	<id name="meterId" column="meter_id" type="java.lang.Long">
+            <!-- <generator class="assigned">
+            </generator> -->
+            <generator class="assigned">
+            </generator>
+    	</id>
+
+        <property column="sn" length="100" name="sn" not-null="false" type="java.lang.String"/>
+        <property column="tag" length="100" name="tag" not-null="false" type="java.lang.String"/>
+        <property column="is_lock" name="isLock" not-null="false" type="org.springframework.orm.hibernate3.support.BlobByteArrayType"/>
+        <property column="is_online" name="isOnline" not-null="false" type="org.springframework.orm.hibernate3.support.BlobByteArrayType"/>
+        <property column="create_date" name="createDate" not-null="false" type="java.util.Date"/>
+        <property column="modify_date" name="modifyDate" not-null="false" type="java.util.Date"/>
+        <property column="delete_tag" name="deleteTag" not-null="false" type="org.springframework.orm.hibernate3.support.BlobByteArrayType"/>
+    </class>
+
+</hibernate-mapping>

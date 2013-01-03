@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+    ">
+ 
+ 
+ 
+<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/WEB-INF/jsp/" p:suffix=".jsp" />
+
+<bean id="myDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+<property name="driverClassName" value="org.sqlite.JDBC"/>
+<property name="url" value="jdbc:sqlite:/d:/DMS_sqlite3"/>
+<property name="username" value=""/>
+<property name="password" value=""/>
+</bean>
+
+<bean id="mySessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">  
+       <property name="dataSource" ref="myDataSource"></property>   
+       
+       <property name="mappingResources">   
+            <list>   
+                <value>com/bionme/util/Meter.hbm.xml</value>   
+           </list>   
+       </property>   
+       <property name="hibernateProperties">   
+           <props>     
+              <prop key="hibernate.dialect">dialect.SQLiteDialect</prop>    
+                <prop key="hibernate.hbm2ddl.auto">update</prop>     
+            <!--     <prop key="hibernate.current_session_context_class">thread</prop> -->  
+                <prop key="hibernate.current_session_context_class">  
+                   org.springframework.orm.hibernate3.SpringSessionContext  
+                </prop>  
+                <prop key="hibernate.show_sql">true</prop>     
+                <prop key="hibernate.format_sql">true</prop>    
+            </props>     
+         </property>   
+    </bean>  
+
+
+
+<!--  
+<bean id="mySessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+<property name="configLocation">
+<value>classpath:hibernate.cfg.xml</value>
+</property>
+</bean>
+-->
+<!-- 
+<bean id="mySessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+<property name="dataSource" ref="myDataSource" />
+<property name="annotatedClasses">
+
+<list>
+<value>com.bionme.domain.Meter</value>
+</list>
+
+</property>
+<property name="hibernateProperties">
+<props>
+<prop key="hibernate.dialect"> com.bionme.util.SQLiteDialect</prop>
+<prop key="hibernate.show_sql">true</prop>
+<prop key="hibernate.hbm2ddl.auto">update</prop>
+</props>
+</property>
+</bean>
+ -->
+
+<bean id="myMeterDAO" class="com.bionme.dao.MeterDAOImpl">
+<property name="sessionFactory" ref="mySessionFactory"/>
+</bean>
+
+<bean name="/meter/*.htm" class="com.bionme.controller.MeterController" >
+<property name="meterDAO" ref="myMeterDAO" />
+</bean>
+</beans>
+
+
